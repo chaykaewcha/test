@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Libre+Barcode+128&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- font-awesome@6.2.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+    <!-- bootstrap@5.3-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css">
+
+
+   <?!= include("styles-css"); ?>
+    
+</head>
+
+<body>
+
+<center>
+  <br/>
+<img src="https://sv1.picz.in.th/images/2023/03/24/mWNBPW.gif" style="width:200px; height:auto; padding-bottom: 10px; ">  
+
+<br/>
+<div class="form-group mb-2">
+<h2>Point of Sale</h2>                  
+<h5 class="text-center text-danger">สื่อ และนวัตกรรมนายชุมพร แก้วชา</h5>
+</div>      
+</center>
+<br/>
+
+    <main class="main-container flex-row">
+
+                <section class="order flex-column list" style="margin-right: 10px;">
+            <article class="receipt flex-column">
+                <div class="company-info flex-column">
+                    <p id="company-name" style="margin-bottom: 0rem;">Sanwithz Shop</p>
+                    <p id="company-address" style="margin-bottom: 0rem;">สื่อและนวัตกรรมครูชุมพร แก้วชา</p>
+                    <p id="company-city" style="margin-bottom: 0rem;">--------------------------------</p>
+                    <p id="company-phone" style="margin-bottom: 0rem;">Line : Sanwithz Web App</p>
+                    <p id="invoice-number" style="margin-bottom: 0rem;"></p>
+                </div>
+                <div class="receipt-details">
+                    <table class="details-table">
+                        <thead>
+                            <tr>
+                                <td class="dotted-border" colspan="5"></td>
+                            </tr>
+                            <tr>
+                                <td class="empty-border" colspan="5"></td>
+                            </tr>
+                            <tr>
+                                <th class="description">รายการออกกำลังกาย</th>
+                                <th class="quantity">จำนวน</th>
+                                <th class="price" >ครั้ง</th>
+                                <th class="subtotal">รวม</th>
+                                <th class="delete">ลบ</th>
+                            </tr>
+                            <tr>
+                                <td class="dotted-border" colspan="5"></td>
+                            </tr>
+                            <tr>
+                                <td class="empty-border" colspan="5"></td>
+                            </tr>
+                        </thead>
+                        <tbody id="receipt-details">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="receipt-summary">
+                    <table class="summary-table">
+                        <tbody class="summary-table" id="total-summary">
+                            <tr>
+                                <td class="dotted-border" colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td class="empty-border" colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>ราคารวม:</td>
+                                <td id="subtotal-summary">฿0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>ภาษี:</td>
+                                <td id="tax-summary">฿0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>ราคาสุทธิ:</td>
+                                <td id="grandtotal-summary">฿0.00</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody class="summary-table" id="payment-summary">
+                            <tr>
+                                <td>รับเงิน:</td>
+                                <td id="amount-paid">฿0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td id="tip-change-title">เงินทอน:</td>
+                                <td id="tip-change-value">฿0.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>ชำระเงินโดย:</td>
+                                <td id="payment-type"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="dotted-border" colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td class="empty-border" colspan="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="receipt-footer flex-column">
+                    <h5 id="receipt-message">ขอบคุณที่สนับสนุนครับ !</h5>
+                    <br/>
+                    <!-- <p id="barcode">Barcode</p> -->
+                </div>
+            </article>
+            <div class="toolbar flex-row">
+                <i class="fas fa-money-bill-wave toolbar-icon paypad-show" data-payment-type='{"type" : "cash"}'></i>
+                <!-- <i class="fas fa-credit-card toolbar-icon paypad-show" data-payment-type='{"type" : "credit"}'></i> -->
+                <i class="fas fa-trash-alt toolbar-icon" id="clear-order"></i>
+            </div>
+        </section>
+
+                <section class=" grid list">
+                  <div class="menu flex-row" id="menu">
+                
+                  </div>
+                  <div class="payment grid" id="payment-overlay">
+                    <div class="paypad grid" id="paypad">
+                      <button class="paypad-btn number" data-id="7">7</button>
+                      <button class="paypad-btn number" data-id="8">8</button>
+                      <button class="paypad-btn number" data-id="9">9</button>
+                      <button class="paypad-btn number" data-id="4">4</button>
+                      <button class="paypad-btn number" data-id="5">5</button>
+                      <button class="paypad-btn number" data-id="6">6</button>
+                      <button class="paypad-btn number" data-id="1">1</button>
+                      <button class="paypad-btn number" data-id="2">2</button>
+                      <button class="paypad-btn number" data-id="3">3</button>
+                      <button class="paypad-btn number" data-id="0">0</button>
+                      <button class="paypad-btn " data-id="back">Back</button>
+                      <button class="paypad-btn " data-id="clear">Clear</button>
+                      <button class="paypad-btn span3-col" id="close-sale" data-id="close-sale" style="background-color: green;color: white;font-size: 36px;display: grid;padding-top: 20px;">บันทึก</button>
+                
+                    </div>
+                    <div class="close-paypad flex">
+                      <i class="fas fa-times close-icon paypad-close" id="paypad-close"></i>
+                    </div>
+                  </div>
+                </section>
+
+    </main>
+
+<footer class="text-center text-lg-start bg-light text-muted" style="  position: static;left: 0;bottom: 0;width: 100%;">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright  | พัฒนาโดยครูสิทธิชาติ สิทธิ<br/>
+  </div>
+</footer>
+
+
+    <?!= include('script-js') ?>
+
+
+
+    
+</body>
+
+</html>
